@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="Backend_Reply.msgflow" nsPrefix="Backend_Reply.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="Backend_Reply" bundleName="Backend_Reply" pluginId="SFX DocBroker Request Reply Application"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/SFX DocBroker Request Reply Application/icons/full/obj16/Backend_Reply.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/SFX DocBroker Request Reply Application/icons/full/obj30/Backend_Reply.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="142,82" queueName="DOCB.REQ.Q" connection="CLIENT" destinationQueueManagerName="SMQPOC2" queueManagerHostname="scrbsfxdk007046.crb.apmoller.net" listenerPortNumber="1415" channelName="SMQPOC2.SVRCONN">
+        <translation xmi:type="utility:ConstantString" string="Requester Request Q"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="537,83" queueName="DOCB.REP.Q" connection="CLIENT" destinationQueueManagerName="SMQPOC2" queueManagerHostname="scrbsfxdk007046.crb.apmoller.net" listenerPortNumber="1415" channelName="SMQPOC2.SVRCONN">
+        <translation xmi:type="utility:ConstantString" string="Requester Reply Q"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="312,82" computeExpression="esql://routine/#Generate_Reply_Message.Main">
+        <translation xmi:type="utility:ConstantString" string="Generate Reply Message"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="Request.msgflow" nsPrefix="Request.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="Request" bundleName="Request" pluginId="Request_Reply"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Request_Reply/icons/full/obj16/Request.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Request_Reply/icons/full/obj30/Request.gif"/>
+    <version xmi:type="utility:ConstantString" string="Version 1.0"/>
+    <composition>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="275,110" computeExpression="esql://routine/#Transform_Request_Message.Main">
+        <translation xmi:type="utility:ConstantString" string="Send GCSS Request Message"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="38,108" queueName="SFX.REQ.Q1" connection="CLIENT" destinationQueueManagerName="SMQPOC" queueManagerHostname="scrbsfxdk007046.crb.apmoller.net" listenerPortNumber="1414" channelName="SMQPOC.SVRCONN" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="Read GCSS Request Message"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="523,110" queueName="DOCB.REQ.Q" connection="CLIENT" destinationQueueManagerName="SMQPOC2" queueManagerHostname="scrbsfxdk007051.crb.apmoller.net" listenerPortNumber="1415" channelName="SMQPOC2.SVRCONN" persistenceMode="yes" newMsgId="true">
+        <translation xmi:type="utility:ConstantString" string="Write DocBroker Request Message "/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="312,17" queueName="IIB.BOQ.Q" connection="CLIENT" destinationQueueManagerName="SMQPOC" queueManagerHostname="scrbsfxdk007046.crb.apmoller.net" listenerPortNumber="1414" channelName="SMQPOC.SVRCONN">
+        <translation xmi:type="utility:ConstantString" string="Backout Message"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="325,228">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>
